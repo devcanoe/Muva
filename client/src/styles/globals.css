@@ -1,0 +1,21 @@
+:root {
+    /**  color **/
+    --white: #ffffff;
+    --black: #000000;
+    --primary: #56ccf2;
+    --primary-light: #f5f5f5;
+
+    /** spacing **/
+    --s1: 10px;
+    --s2: 15px;
+    --s3: 20px;
+    --s4: 25px;
+    --s5: 50px;
+    --s6: 100px;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}

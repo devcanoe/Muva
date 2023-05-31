@@ -1,0 +1,19 @@
+/** desktop **/
+.container {
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: var(--white);
+    padding: 0px var(--s6);
+}
+
+/** mobile **/
+@media screen and (max-width: 900px) {
+    .container {
+        padding: 0px var(--s4);
+    }
+}
