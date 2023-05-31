@@ -1,0 +1,34 @@
+/** desktop **/
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s1);
+    background-color: var(--grey);
+    padding: var(--s3) var(--s6);
+}
+
+.trips {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s4);
+}
+
+.trip {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s1);
+    border-radius: var(--s1);
+    background-color: var(--primary-light);
+    padding: var(--s3);
+}
+
+/** mobile **/
+@media screen and (max-width: 900px) {
+    .container {
+        padding: var(--s3) var(--s4);
+    }
+
+    .trips {
+        grid-template-columns: 1fr;
+    }
+}

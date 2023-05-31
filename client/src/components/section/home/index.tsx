@@ -2,8 +2,12 @@ import Dropdown from "@/components/form/dropdown";
 import styles from "./index.module.css";
 import InputField from "@/components/form/inputfield";
 import Button from "@/components/form/button";
+import { useRouter } from "next/router";
 
 export default function HomeContent() {
+
+    const router = useRouter();
+
     return (
         <>
             <div className={styles.container}>
@@ -24,7 +28,7 @@ export default function HomeContent() {
                         
                         <InputField type={"date"} label="Departure date" />
                         
-                        <Button label={"Find Trip"} onClick={() => {}}/>
+                        <Button label={"Find Trip"} onClick={() => {router.push("/trips")}}/>
                     </div>
                 </div>
             </div>
