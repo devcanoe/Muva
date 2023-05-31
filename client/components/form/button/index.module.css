@@ -1,0 +1,14 @@
+/** desktop **/
+.container {
+    border: none;
+    border-radius: var(--s1);
+    padding: var(--s2);
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.container:hover {
+    background-color: var(--primary-hover);
+}
+
+/** mobile **/
