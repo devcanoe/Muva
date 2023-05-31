@@ -1,0 +1,32 @@
+/** desktop **/
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input {
+    border: 1px solid var(--grey);
+    border-radius: var(--s1);
+    padding: var(--s2);
+}
+
+.label {
+    color: var(--grey);
+    font-weight: 400;
+    font-size: var(--s1);
+    line-height: 20px;
+    text-align: start;
+}
+
+.error {
+    margin: 0;
+    padding: 0;
+    color: red;
+    text-align: start;
+}
+
+/** mobile **/
+@media screen and (max-width: 900px) {
+
+}
