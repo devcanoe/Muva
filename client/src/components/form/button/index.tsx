@@ -11,7 +11,7 @@ interface IButton {
 export default function Button(props: IButton) {
     return (
         <>
-            <button type={props.type}  className={'heroBtn'} onClick={props.onClick} disabled={props.disabled}>
+            <button type={props.type}  className={styles.container} onClick={props.onClick} disabled={props.disabled}>
                 {props.isLoading ? ('Loading...') : props.label}
             </button>
         </>

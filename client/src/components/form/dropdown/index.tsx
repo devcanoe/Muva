@@ -25,10 +25,14 @@ export default function Dropdown(props: IDropdown) {
 
     return (
         <>
-            <select className={styles.container} value={props.value} name={props.name} disabled={props.disabled} onChange={props.onChange} required>
-                <option>{props.label}</option>
-                {options}
-            </select>
+            <div className={styles.column}>
+                <small>{props.label}</small>
+                <select className={styles.container} value={props.value} name={props.name} disabled={props.disabled} onChange={props.onChange} required>
+                    <option>{props.label}</option>
+                    {options}
+                </select>
+            </div>
+            
         </>
     )
 }

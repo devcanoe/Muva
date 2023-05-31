@@ -4,3 +4,9 @@
     border-radius: var(--s1);
     padding: 10px;
 }
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s1)
+}

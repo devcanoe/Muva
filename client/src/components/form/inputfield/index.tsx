@@ -18,7 +18,7 @@ export default function InputField(props: IInputfield) {
     return (
         <>
             <div className={styles.container}>
-                <p className={styles.label}>{props.label}</p>
+                <small>{props.label}</small>
                 <input
                     type={props.type}
                     name={props.name}

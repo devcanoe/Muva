@@ -2,13 +2,14 @@
 .container {
     border: none;
     border-radius: var(--s1);
-    padding: var(--s2);
+    padding: var(--s1);
     background-color: var(--primary);
     color: var(--white);
 }
 
 .container:hover {
-    background-color: var(--primary-hover);
+    background-color: var(--primary-light);
+    color: var(--primary);
 }
 
 /** mobile **/
