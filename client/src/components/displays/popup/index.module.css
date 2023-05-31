@@ -1,0 +1,50 @@
+/** desktop **/
+.cover {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background-color: #0000003e;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 400px;
+    height: fit-content;
+    padding: var(--s3);
+    border-radius: var(--s1);
+    background-color: var(--white);
+    color: var(--black);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s3);
+}
+
+.card .nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.nav .closebtn {
+    border: none;
+    background-color: transparent;
+}
+
+
+/** mobile **/
+@media screen and (max-width: 900px) {
+    .cover {
+        padding: 0px var(--s1); 
+    }
+
+    .card {
+        width: 100%;
+    }
+}

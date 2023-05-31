@@ -1,0 +1,14 @@
+/** desktop **/
+.container {
+    padding: var(--s1);
+    border-radius: var(--s1);
+    border: 1px solid var(--grey);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s1);
+}
+
+/** mobile **/
+@media screen and (max-width: 900px) {
+
+}
