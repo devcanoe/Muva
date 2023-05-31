@@ -27,3 +27,7 @@ h2 {
     font-size: 34px;
     font-weight: 600;
 }
+
+input, select {
+    -webkit-appearance: none;
+  }
