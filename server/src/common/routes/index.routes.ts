@@ -3,6 +3,7 @@ import { ErrorInterface } from "../utils/error.utils";
 import Http from "../utils/http.utils";
 import userRoute from "../../modules/User/routes/user.routes";
 import tripRoute from "../../modules/Trip/routes/trip.routes";
+import bookingRoute from "../../modules/Booking/routes/booking.routes";
 
 export default class Routes {
   http: any;
@@ -21,6 +22,7 @@ export default class Routes {
     //MAIN ROUTES
     this.app.use("/api/v1/user", userRoute);
     this.app.use("/api/v1/trip", tripRoute);
+    this.app.use("/api/v1/booking", bookingRoute);
     //ERROR HANDLING
     this.app.all("*", (req: Request, res: Response) => {
       this.http.Response({
