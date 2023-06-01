@@ -15,7 +15,7 @@ export default class GetBookingsService implements Service<Request, Response, Ne
     next: NextFunction
   ): Promise<void> {
     try {
-      const data = await this.bookingRepository.getAll();
+      const data = await this.bookingRepository.getAll(req.query);
 
       this.http.Response({
         res,

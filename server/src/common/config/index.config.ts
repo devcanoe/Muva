@@ -8,4 +8,7 @@ export default {
   databae: {
     url: process.env.MONGO_URI || " ",
   },
+  api: {
+    paystack_key: process.env.PAYSTACK_KEY
+  }
 };

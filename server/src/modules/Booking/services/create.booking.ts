@@ -22,7 +22,7 @@ export default class CreateBookingService implements Service<Request, Response, 
       const newBookingPayload: Booking = {
         trip,
         user,
-        ref_no: short_id(),
+        ref_no: `bk_${short_id()}`,
       };
 
       const data = await this.bookingRepository.create(newBookingPayload);

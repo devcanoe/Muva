@@ -6,11 +6,11 @@ import Booking from "../../../common/database/model/booking.model";
 
 @injectable()
 export default class BookingRepository implements CRUD {
-  async getOne(data: Booking): Promise<void> {
-    return await databaseUtils.readOne(bookingSchema, data);
+  async getOne(data: Booking, popOption_1?: string, popOption_2?: string): Promise<void> {
+    return await databaseUtils.readOne(bookingSchema, data, popOption_1, popOption_2);
   }
-  async getAll(): Promise<any> {
-    return await databaseUtils.readAll(bookingSchema);
+  async getAll(query?: Record<string, any>): Promise<any> {
+    return await databaseUtils.readAll(bookingSchema, query);
   }
   async create(data: Booking): Promise<void> {
     return await databaseUtils.create(bookingSchema, data);
