@@ -25,16 +25,24 @@ class DatabaseUtil {
       error.message;
     }
   }
-  async readOne(model: Model<any>, data: Record<string, string | any>) {
+  async readOne(model: Model<any>, data: Record<string, string | any>, popOption_1?: string, popOption_2?: string) {
     try {
-      return model.findOne(data);
+      return model
+        .findOne(data)
+        .populate(popOption_1 || "")
+        .populate(popOption_2 || "");
     } catch (error: any) {
       error.message;
     }
   }
-  async readAll(model: Model<any>) {
+  async readAll(model: Model<any>, query?: Record<string, any>) {
     try {
-      return model.find();
+      const queryObj = { ...query };
+      const deletedStr = ["sort", "limit", "page"];
+      deletedStr.map((el) => delete queryObj[el]);
+      let queryStr = JSON.stringify(queryObj);
+      queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+      return model.find(JSON.parse(queryStr));
     } catch (error: any) {
       error.message;
     }

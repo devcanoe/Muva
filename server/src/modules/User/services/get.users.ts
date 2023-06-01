@@ -9,7 +9,7 @@ export default class GetUsersService implements Service<Request, Response, NextF
   constructor(private userRepository: UserRepository, private http: Http) {}
   async execute(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const data = await this.userRepository.getAll();
+      const data = await this.userRepository.getAll(req.query);
 
       this.http.Response({
         res,

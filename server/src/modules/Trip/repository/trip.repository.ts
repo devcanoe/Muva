@@ -9,8 +9,8 @@ export default class TripRepository implements CRUD {
   async getOne(data: Trip): Promise<void> {
     return await databaseUtils.readOne(tripSchema, data);
   }
-  async getAll(): Promise<any> {
-    return await databaseUtils.readAll(tripSchema);
+  async getAll(query: Record<string, any>): Promise<any> {
+    return await databaseUtils.readAll(tripSchema, query);
   }
   async create(data: Trip): Promise<void> {
     return await databaseUtils.create(tripSchema, data);

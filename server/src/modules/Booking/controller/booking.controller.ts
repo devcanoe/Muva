@@ -6,6 +6,7 @@ import EditBookingService from "../services/edit.booking";
 import DeleteBookingService from "../services/delete.booking";
 import { NextFunction, Request, Response } from "express";
 
+
 @injectable()
 export default class BookingController {
   constructor(

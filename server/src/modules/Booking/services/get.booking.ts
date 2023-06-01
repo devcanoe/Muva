@@ -16,7 +16,7 @@ export default class GetBookingService implements Service<Request, Response, Nex
     try {
       const { id } = req.params;
 
-      const data = await this.bookingRepository.getOne({ _id: id });
+      const data = await this.bookingRepository.getOne({ _id: id }, "user", "trip");
 
       this.http.Response({
         res,
