@@ -20,6 +20,7 @@
     "mongoose": "^7.2.2",
     "morgan": "^1.10.0",
     "reflect-metadata": "^0.1.13",
+    "short-uuid": "^4.2.2",
     "tsyringe": "^4.7.0"
   },
   "devDependencies": {
