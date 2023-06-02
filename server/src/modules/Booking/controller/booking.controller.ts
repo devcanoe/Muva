@@ -5,7 +5,7 @@ import CreateBookingService from "../services/create.booking";
 import EditBookingService from "../services/edit.booking";
 import DeleteBookingService from "../services/delete.booking";
 import { NextFunction, Request, Response } from "express";
-
+import ConfirmBookingService from "../services/confirm.booking";
 
 @injectable()
 export default class BookingController {
@@ -14,7 +14,8 @@ export default class BookingController {
     private getAll: GetBookingsService,
     private create: CreateBookingService,
     private edit: EditBookingService,
-    private remove: DeleteBookingService
+    private remove: DeleteBookingService,
+    private hook: ConfirmBookingService
   ) {}
   async readOne(req: Request<{ id: string }>, res: Response, next: NextFunction) {
     await this.getOne.execute(req, res, next);
@@ -30,5 +31,8 @@ export default class BookingController {
   }
   async delete(req: Request<{ id: string }>, res: Response, next: NextFunction) {
     await this.remove.execute(req, res, next);
+  }
+  async watch(req: Request<{}>, res: Response, next: NextFunction) {
+    await this.hook.execute(req, res, next);
   }
 }

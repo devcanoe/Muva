@@ -1,37 +1,36 @@
 import { injectable } from "tsyringe";
 import Service from "../../../common/interface/service.interface";
 import { NextFunction, Request, Response } from "express";
-import BookingRepository from "../repository/booking.repository";
+import PaymentRepository from "../repository/payment.repository";
 import Http from "../../../common/utils/http.utils";
 import { ParamsDictionary } from "express-serve-static-core";
 import { ParsedQs } from "qs";
-import Booking from "../../../common/database/model/booking.model";
+import Payment from "../../../common/database/model/payment.model";
 
 @injectable()
-export default class EditBookingService implements Service<Request, Response, NextFunction> {
-  constructor(private bookingRepository: BookingRepository, private http: Http) {}
+export default class EditPaymentService implements Service<Request, Response, NextFunction> {
+  constructor(private paymentRepository: PaymentRepository, private http: Http) {}
   async execute(
-    req: Request<{ id: string }, any, Booking, ParsedQs, Record<string, any>>,
+    req: Request<{ id: string }, any, Payment, ParsedQs, Record<string, any>>,
     res: Response<any, Record<string, any>>,
     next: NextFunction
   ): Promise<void> {
     try {
       const { id } = req.params;
-      const { trip, user } = req.body;
+      const { status } = req.body;
 
-      const newBookingPayload: Booking = {
-        trip,
-        user,
+      const newPaymentPayload: Payment = {
+        status,
         updated_at: new Date(),
       };
 
-      const data = await this.bookingRepository.update({ _id: id }, newBookingPayload);
+      const data = await this.paymentRepository.update({ _id: id }, newPaymentPayload);
 
       this.http.Response({
         res,
         status: "success",
         statusCode: 201,
-        message: "Booking has Been Updated!",
+        message: "Payment Updated Successfully",
         data,
       });
     } catch (error) {

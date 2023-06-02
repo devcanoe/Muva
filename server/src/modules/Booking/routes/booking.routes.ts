@@ -17,6 +17,6 @@ bookingRoute
   )
   .delete("/:id", (req: Request<{ id: string }>, res: Response, next: NextFunction) =>
     bookingController.delete(req, res, next)
-  );
+  ).post("/confirm-payment", (req: Request, res: Response, next: NextFunction) => bookingController.watch(req, res, next) );
 
 export default bookingRoute;

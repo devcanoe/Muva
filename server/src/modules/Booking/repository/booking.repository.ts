@@ -12,7 +12,7 @@ export default class BookingRepository implements CRUD {
   async getAll(query?: Record<string, any>): Promise<any> {
     return await databaseUtils.readAll(bookingSchema, query);
   }
-  async create(data: Booking): Promise<void> {
+  async create(data: Booking): Promise<any> {
     return await databaseUtils.create(bookingSchema, data);
   }
   async update(data: Booking, payload: Booking): Promise<void> {

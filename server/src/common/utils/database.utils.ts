@@ -38,10 +38,15 @@ class DatabaseUtil {
   async readAll(model: Model<any>, query?: Record<string, any>) {
     try {
       const queryObj = { ...query };
+
       const deletedStr = ["sort", "limit", "page"];
+
       deletedStr.map((el) => delete queryObj[el]);
+
       let queryStr = JSON.stringify(queryObj);
+
       queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+
       return model.find(JSON.parse(queryStr));
     } catch (error: any) {
       error.message;
@@ -49,7 +54,7 @@ class DatabaseUtil {
   }
   async update(model: Model<any>, data: Record<string, string | any>, payload: Record<string, string | any>) {
     try {
-      return model.findByIdAndUpdate(data, payload, { new: true });
+      return model.findOneAndUpdate(data, payload, { new: true });
     } catch (error: any) {
       error.message;
     }
@@ -61,11 +66,6 @@ class DatabaseUtil {
       error.message;
     }
   }
-
-  //FEATURES
-  filter() {}
-  sort() {}
-  page() {}
 }
 
 export default new DatabaseUtil(mongoose);

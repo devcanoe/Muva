@@ -1,7 +1,20 @@
 import Paystack from "paystack";
 import indexConfig from "../config/index.config";
+const payment = Paystack(indexConfig.api.paystack_key || " ");
 
-const makePayment = () => {
-    const data = Paystack(indexConfig.api.paystack_key ||" ")
-    return Paystack.
+export const makePayment = (data: PaystackPayload) => {
+  try {
+    return payment.transaction.initialize(data);
+  } catch (error) {
+    return error;
+  }
+};
+
+interface PaystackPayload {
+  [key: string]: any;
+  amount: number | any;
+  reference: string;
+  name: string;
+  email: string;
+  currency: string;
 }
