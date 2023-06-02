@@ -21,6 +21,7 @@ export default class EditUserService implements Service<Request, Response, NextF
         password,
         phone,
         gender,
+        updated_at: new Date(),
       };
       const data = await this.userRepository.update({ _id: id }, newUserPayload);
 
@@ -28,7 +29,7 @@ export default class EditUserService implements Service<Request, Response, NextF
         res,
         status: "success",
         statusCode: 201,
-        message: "User Successfully Created!",
+        message: "User Successfully Updated!",
         data,
       });
     } catch (error) {

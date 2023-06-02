@@ -7,7 +7,7 @@ import userSchema from "../../../common/database/schema/user.schema";
 @injectable()
 export default class UserRepository implements CRUD {
   constructor() {}
-  async getOne(data: User): Promise<void> {
+  async getOne(data: User): Promise<any> {
     return await databaseUtils.readOne(userSchema, data);
   }
   async getAll(query: Record<string, any>): Promise<any> {

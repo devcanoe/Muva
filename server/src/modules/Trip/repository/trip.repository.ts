@@ -6,7 +6,7 @@ import Trip from "../../../common/database/model/trip.model";
 
 @injectable()
 export default class TripRepository implements CRUD {
-  async getOne(data: Trip): Promise<void> {
+  async getOne(data: Trip): Promise<any> {
     return await databaseUtils.readOne(tripSchema, data);
   }
   async getAll(query: Record<string, any>): Promise<any> {
