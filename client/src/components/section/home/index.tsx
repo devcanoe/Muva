@@ -74,8 +74,8 @@ export default function HomeContent() {
                             name={'from'}
                             value={formik.values.from}
                             onChange={formik.handleChange}
-                            error={formik.touched.from && Boolean(formik.errors.from)}
-                            helperText={formik.touched.from && formik.errors.from}
+                            // error={formik.touched.from && Boolean(formik.errors.from)}
+                            // helperText={formik.touched.from && formik.errors.from}
                             required={true}
                         />
                         
@@ -86,8 +86,8 @@ export default function HomeContent() {
                             name={'to'}
                             value={formik.values.to}
                             onChange={formik.handleChange}
-                            error={formik.touched.to && Boolean(formik.errors.to)}
-                            helperText={formik.touched.to && formik.errors.to}
+                            // error={formik.touched.to && Boolean(formik.errors.to)}
+                            // helperText={formik.touched.to && formik.errors.to}
                             required={true}
                         />
                         
@@ -96,7 +96,7 @@ export default function HomeContent() {
                             label="Departure Date"
                             type={'date'}
                             name={'departure_date'}
-                            value={formik.values.departure_date}
+                            value={formik.values.departure_date.toString()}
                             onChange={formik.handleChange}
                             error={formik.touched.departure_date && Boolean(formik.errors.departure_date)}
                             helperText={formik.touched.departure_date && formik.errors.departure_date}

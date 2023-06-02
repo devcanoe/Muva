@@ -5,7 +5,7 @@ const baseUrl = "trip";
 export interface ISearch {
     departure_location: string;
     arrival_location: string;
-    trip_date: Date;
+    trip_date: string;
 }
 
 export const tripEndpoint = sungloApi.injectEndpoints({

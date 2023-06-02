@@ -7,6 +7,7 @@ import { ISearch, useSearchTripQuery } from "@/services/trip.service";
 import { useEffect, useState } from "react";
 
 interface Trip {
+    "_id": string,
     "departure_location": string,
     "departure_time": string,
     "arrival_location": string,

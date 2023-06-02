@@ -122,8 +122,8 @@ export default function CheckoutContent() {
                     name={'gender'}
                     value={formik.values.gender}
                     onChange={formik.handleChange}
-                    error={formik.touched.gender && Boolean(formik.errors.gender)}
-                    helperText={formik.touched.gender && formik.errors.gender}
+                    // error={formik.touched.gender && Boolean(formik.errors.gender)}
+                    // helperText={formik.touched.gender && formik.errors.gender}
                     required={true}
                 />
                 <InputField
