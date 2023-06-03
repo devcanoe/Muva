@@ -12,6 +12,7 @@ import { short_id } from "../../../../common/utils/uuid.utils";
 import { makePayment } from "../../../../common/utils/paystack.utils";
 import TripRepository from "../../../Trip/repository/trip.repository";
 import Http from "../../../../common/utils/http.utils";
+import Emailer, { mail } from "../../../../common/utils/email.utils";
 
 @injectable()
 export default class UserReserveSeatService implements Service<Request, Response, NextFunction> {
@@ -60,6 +61,18 @@ export default class UserReserveSeatService implements Service<Request, Response
       //UPDATE SEAT CAPACITY
       const reduce_seat = journey.capacity - 1;
       await this.tripRepository.update({ _id: trip }, { capacity: reduce_seat });
+
+      //SEND CONFIRMATION MAIL
+      if (booking) {
+        const confirmation: mail = {
+          to: person.email,
+          from: "hello@muva.com",
+          subject: "Booking Confirmation",
+          text: `Hello ${person.first_name}, you booking with id ${bookingReference} has been confirmed`,
+          html: `<p>Hello ${person.first_name}, you booking with id <strong>${bookingReference}</strong> has been confirmed</p>`,
+        };
+        await new Emailer(confirmation).send();
+      }
 
       //RETURN DATA
       const data = {

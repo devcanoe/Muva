@@ -8,6 +8,8 @@ export default interface User extends Base {
   email?: string;
   phone?: number;
   gender?: Gender;
+  next_of_kin_name?: string;
+  next_of_kin_number?: string;
 }
 
 enum Role {
