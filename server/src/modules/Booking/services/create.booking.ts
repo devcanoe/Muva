@@ -38,33 +38,8 @@ export default class CreateBookingService implements Service<Request, Response, 
         ref_no: bookingReference,
       };
 
-      const booking: Booking = await this.bookingRepository.create(newBookingPayload);
+      const data: Booking = await this.bookingRepository.create(newBookingPayload);
 
-      const paystackPayloadTrip: Trip = await this.tripRepository.getOne({ _id: booking.trip });
-      const paystackPayloadUSer: User = await this.userRepository.getOne({ _id: booking.user });
-
-      //initialize paystack
-      const payment_url = await makePayment({
-        amount: paystackPayloadTrip.seat_cost,
-        name: `${paystackPayloadUSer.first_name} ${paystackPayloadUSer.last_name}` || " ",
-        email: paystackPayloadUSer.email || "",
-        reference: bookingReference,
-        currency: "NGN",
-      });
-      // add transaction record
-
-      const payment_ref = await this.paymentRepository.create({
-        booking: booking._id,
-        payment_method: "PAYSTACK",
-        status: "pending",
-        ref_no: bookingReference,
-      });
-
-      const data = {
-        booking,
-        payment_url,
-        payment_ref,
-      };
       this.http.Response({
         res,
         status: "success",
