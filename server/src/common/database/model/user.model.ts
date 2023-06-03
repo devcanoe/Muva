@@ -1,7 +1,7 @@
 import Base from "./base.model";
 
 export default interface User extends Base {
-  role?: Role;
+  role?: Role | string;
   password?: string;
   first_name?: string;
   last_name?: string;
