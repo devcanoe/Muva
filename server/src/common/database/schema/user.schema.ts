@@ -19,6 +19,8 @@ const userSchema: Schema = new Schema<User>({
     enum: ["ADMIN", "GUEST", "USER", "AGENT"],
     default: "GUEST",
   },
+  next_of_kin_name: String,
+  next_of_kin_number: Number,
   created_at: {
     type: Date,
     default: Date.now,
