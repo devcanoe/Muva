@@ -13,13 +13,13 @@ export default class UserRepository implements CRUD {
   async getAll(query: Record<string, any>): Promise<any> {
     return await databaseUtils.readAll(userSchema, query);
   }
-  async create(data: User): Promise<void> {
+  async create(data: User): Promise<any> {
     return await databaseUtils.create(userSchema, data);
   }
-  async update(data: User, payload: User): Promise<void> {
+  async update(data: User, payload: User): Promise<any> {
     return await databaseUtils.update(userSchema, data, payload);
   }
-  async delete(data: User): Promise<void> {
+  async delete(data: User): Promise<any> {
     return await databaseUtils.delete(userSchema, data);
   }
 }

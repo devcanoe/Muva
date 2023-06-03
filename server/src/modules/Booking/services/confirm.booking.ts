@@ -20,20 +20,12 @@ export default class ConfirmBookingService implements Service<Request, Response,
   ): Promise<void> {
     try {
       const event = req.body;
-      let data;
-      if (event.event === "charge.success") {
-        data = await this.paymentRepository.update({ ref_no: event.data.reference }, { status: "success" });
-      } else {
-        data = await this.paymentRepository.update({ ref_no: event.data.reference }, { status: "failed" });
-      }
 
-      this.http.Response({
-        res,
-        status: "success",
-        statusCode: 200,
-        message: "Booking Successfully Confirmed",
-        data,
-      });
+      if (event.event === "charge.success") {
+        await this.paymentRepository.update({ ref_no: event.data.reference }, { status: "success" });
+      } else {
+        await this.paymentRepository.update({ ref_no: event.data.reference }, { status: "failed" });
+      }
     } catch (error) {
       return next(error);
     }
