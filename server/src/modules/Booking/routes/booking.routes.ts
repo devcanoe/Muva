@@ -23,6 +23,7 @@ bookingRoute
   .post("/confirm-payment", (req: Request, res: Response, next: NextFunction) =>
     bookingController.watch(req, res, next)
   )
-  .post("/guest-reserve", (req: Request, res: Response, next: NextFunction) => reserve.guest(req, res, next));
+  .post("/guest-reserve", (req: Request, res: Response, next: NextFunction) => reserve.guest(req, res, next))
+  .post("/user-reserve", (req: Request, res: Response, next: NextFunction) => reserve.user(req, res, next));
 
 export default bookingRoute;
