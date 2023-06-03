@@ -12,13 +12,13 @@ export default class TripRepository implements CRUD {
   async getAll(query: Record<string, any>): Promise<any> {
     return await databaseUtils.readAll(tripSchema, query);
   }
-  async create(data: Trip): Promise<void> {
+  async create(data: Trip): Promise<any> {
     return await databaseUtils.create(tripSchema, data);
   }
-  async update(data: Trip, payload: Trip): Promise<void> {
+  async update(data: Trip, payload: Trip): Promise<any> {
     return databaseUtils.update(tripSchema, data, payload);
   }
-  async delete(data: Trip): Promise<void> {
+  async delete(data: Trip): Promise<any> {
     return await databaseUtils.delete(tripSchema, data);
   }
 }
