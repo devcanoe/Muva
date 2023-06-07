@@ -1,8 +1,8 @@
 import { injectable } from "tsyringe";
 import CRUD from "../../../common/interface/crud.interface";
-import Payment from "../../../common/database/model/payment.model";
+import Payment from "../../../common/database/model/transaction.model";
 import databaseUtils from "../../../common/utils/database.utils";
-import paymentSchema from "../../../common/database/schema/payment.schema";
+import paymentSchema from "../../../common/database/schema/transaction.schema";
 
 @injectable()
 export default class PaymentRepository implements CRUD {

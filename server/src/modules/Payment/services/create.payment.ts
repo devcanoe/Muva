@@ -5,7 +5,7 @@ import PaymentRepository from "../repository/payment.repository";
 import Http from "../../../common/utils/http.utils";
 import { ParamsDictionary } from "express-serve-static-core";
 import { ParsedQs } from "qs";
-import Payment from "../../../common/database/model/payment.model";
+import Payment from "../../../common/database/model/transaction.model";
 import { short_id } from "../../../common/utils/uuid.utils";
 
 @injectable()
