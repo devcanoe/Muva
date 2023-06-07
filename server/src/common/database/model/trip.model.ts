@@ -8,5 +8,10 @@ export default interface Trip extends Base {
   trip_date?: Date;
   seat_cost?: number;
   capacity?: number;
-  vehicle?: string;
+  vehicle?: Vehicle;
+}
+
+enum Vehicle{
+  BUS,
+  CAR,
 }
