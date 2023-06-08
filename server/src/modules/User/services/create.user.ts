@@ -7,28 +7,18 @@ import User from "../../../common/database/model/user.model";
 
 @injectable()
 export default class CreateUserService implements Service<Request, Response, NextFunction> {
-  constructor(private userRepository: UserRepository, private http: Http) {}
+  constructor(private user: UserRepository, private http: Http) {}
   async execute(req: Request<{}, any, User>, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { first_name, last_name, email, role, password, phone, gender } = req.body;
 
-      const newUserPayload: User = {
-        first_name,
-        last_name,
-        email,
-        role,
-        password,
-        phone,
-        gender,
-      };
 
-      const data = await this.userRepository.create(newUserPayload);
+      const data = await this.user.createOne(req.body);
 
       this.http.Response({
         res,
         status: "success",
         statusCode: 201,
-        message: "User Successfully Created!",
+        message: "User Created!",
         data,
       });
     } catch (error) {

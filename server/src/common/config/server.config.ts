@@ -1,5 +1,6 @@
 import { Application } from "express";
-import indexConfig from "./index.config";
+import config from "config";
+import { Log } from "../utils/logger.utils";
 
 export default class ServerConfig {
   private app: Application;
@@ -7,8 +8,12 @@ export default class ServerConfig {
     this.app = app;
   }
   start() {
-    this.app.listen(indexConfig.port, () => {
-      console.log(`Server is running at http://localhost:${indexConfig.port}`);
+    this.app.listen(config.get("port"), () => {
+      if (config.get("env") === "development") {
+        Log.info(`Server is running at http://localhost:${config.get("port")}`);
+      } else {
+        Log.info(`Server Up!`);
+      }
     });
   }
   stop() {}

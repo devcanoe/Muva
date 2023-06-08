@@ -8,7 +8,7 @@ import { ParsedQs } from "qs";
 
 @injectable()
 export default class GetTripService implements Service<Request, Response, NextFunction> {
-  constructor(private tripRepository: TripRepository, private http: Http) {}
+  constructor(private trip: TripRepository, private http: Http) {}
   async execute(
     req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
     res: Response<any, Record<string, any>>,
@@ -17,7 +17,8 @@ export default class GetTripService implements Service<Request, Response, NextFu
     try {
       const { id } = req.params;
 
-      const data = await this.tripRepository.getOne({ _id: id });
+      const data = await this.trip.readOne({ _id: id });
+
       this.http.Response({
         res,
         status: "success",

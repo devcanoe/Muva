@@ -8,20 +8,20 @@ import { ParsedQs } from "qs";
 
 @injectable()
 export default class GetBookingsService implements Service<Request, Response, NextFunction> {
-  constructor(private bookingRepository: BookingRepository, private http: Http) {}
+  constructor(private booking: BookingRepository, private http: Http) {}
   async execute(
     req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
     res: Response<any, Record<string, any>>,
     next: NextFunction
   ): Promise<void> {
     try {
-      const data = await this.bookingRepository.getAll(req.query);
+      const data = await this.booking.readAll(req.query);
 
       this.http.Response({
         res,
         status: "success",
         statusCode: 200,
-        message: "All Bookings Successfully Retrieved",
+        message: "Bookings Retrieved!",
         data,
       });
     } catch (error) {

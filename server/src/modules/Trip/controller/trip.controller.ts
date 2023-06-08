@@ -5,29 +5,52 @@ import CreateTripService from "../services/create.trip";
 import EditTripService from "../services/edit.trip";
 import DeleteTripService from "../services/delete.trip";
 import { Request, Response, NextFunction } from "express";
+import Controller from "../../../common/interface/controller.interface";
+import { ParamsDictionary } from "express-serve-static-core";
+import { ParsedQs } from "qs";
 
 @injectable()
-export default class TripController {
+export default class TripController implements Controller<Request, Response, NextFunction> {
   constructor(
-    private getOne: GetTripService,
-    private getAll: GetTripsService,
-    private create: CreateTripService,
-    private update: EditTripService,
-    private remove: DeleteTripService
+    private getTrip: GetTripService,
+    private getTrips: GetTripsService,
+    private createTrip: CreateTripService,
+    private updateTrip: EditTripService,
+    private deleteTrip: DeleteTripService
   ) {}
-  async readOne(req: Request, res: Response, next: NextFunction) {
-    await this.getOne.execute(req, res, next);
+  async readOne(
+    req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
+    res: Response<any, Record<string, any>>,
+    next: NextFunction
+  ): Promise<any> {
+    await this.getTrip.execute(req, res, next);
   }
-  async readAll(req: Request, res: Response, next: NextFunction) {
-    await this.getAll.execute(req, res, next);
+  async readAll(
+    req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
+    res: Response<any, Record<string, any>>,
+    next: NextFunction
+  ): Promise<any> {
+    await this.getTrips.execute(req, res, next);
   }
-  async post(req: Request, res: Response, next: NextFunction) {
-    await this.create.execute(req, res, next);
+  async createOne(
+    req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
+    res: Response<any, Record<string, any>>,
+    next: NextFunction
+  ): Promise<any> {
+    await this.createTrip.execute(req, res, next);
   }
-  async patch(req: Request<{ id: string }>, res: Response, next: NextFunction) {
-    await this.update.execute(req, res, next);
+  async updateOne(
+    req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
+    res: Response<any, Record<string, any>>,
+    next: NextFunction
+  ): Promise<any> {
+    await this.updateTrip.execute(req, res, next);
   }
-  async delete(req: Request<{ id: string }>, res: Response, next: NextFunction) {
-    await this.remove.execute(req, res, next);
+  async deleteOne(
+    req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
+    res: Response<any, Record<string, any>>,
+    next: NextFunction
+  ): Promise<any> {
+    await this.deleteTrip.execute(req, res, next);
   }
 }
