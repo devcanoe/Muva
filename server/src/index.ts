@@ -2,8 +2,8 @@ import "reflect-metadata";
 import express, { Application, NextFunction, Request, Response } from "express";
 import ServerConfig from "./common/config/server.config";
 import morgan from "morgan";
-import databaseUtils from "./common/utils/database.utils";
 import Routes from "./common/routes/index.routes";
+import databaseConfig from "./common/config/database.config";
 
 const app: Application = express();
 
@@ -18,8 +18,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-databaseUtils.connect();
-new Routes(app).router()
+new Routes(app).router();
 new ServerConfig(app).start();
+databaseConfig.connect();
 
 export default app;

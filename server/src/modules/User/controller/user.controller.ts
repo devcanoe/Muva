@@ -5,29 +5,52 @@ import CreateUserService from "../services/create.user";
 import EditUserService from "../services/edit.user";
 import DeleteUserService from "../services/delete.user";
 import { NextFunction, Request, Response } from "express";
+import Controller from "../../../common/interface/controller.interface";
+import { ParamsDictionary } from "express-serve-static-core";
+import { ParsedQs } from "qs";
 
 @injectable()
-export default class UserController {
+export default class UserController implements Controller<Request, Response, NextFunction> {
   constructor(
-    private getOne: GetUserService,
-    private getAll: GetUsersService,
-    private create: CreateUserService,
-    private update: EditUserService,
-    private remove: DeleteUserService
+    private getUser: GetUserService,
+    private getUsers: GetUsersService,
+    private createUser: CreateUserService,
+    private updateUser: EditUserService,
+    private deleteUser: DeleteUserService
   ) {}
-  async readOne(req: Request, res: Response, next: NextFunction) {
-    await this.getOne.execute(req, res, next);
+  async readOne(
+    req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
+    res: Response<any, Record<string, any>>,
+    next: NextFunction
+  ): Promise<any> {
+    await this.getUser.execute(req, res, next);
   }
-  async readAll(req: Request, res: Response, next: NextFunction) {
-    await this.getAll.execute(req, res, next);
+  async readAll(
+    req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
+    res: Response<any, Record<string, any>>,
+    next: NextFunction
+  ): Promise<any> {
+    await this.getUsers.execute(req, res, next);
   }
-  async post(req: Request, res: Response, next: NextFunction) {
-    await this.create.execute(req, res, next);
+  async createOne(
+    req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
+    res: Response<any, Record<string, any>>,
+    next: NextFunction
+  ): Promise<any> {
+    await this.createUser.execute(req, res, next);
   }
-  async patch(req: Request<{ id: string }>, res: Response, next: NextFunction) {
-    await this.update.execute(req, res, next);
+  async updateOne(
+    req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
+    res: Response<any, Record<string, any>>,
+    next: NextFunction
+  ): Promise<any> {
+    await this.updateUser.execute(req, res, next);
   }
-  async delete(req: Request<{id: string}>, res: Response, next: NextFunction) {
-    await this.remove.execute(req, res, next);
+  async deleteOne(
+    req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
+    res: Response<any, Record<string, any>>,
+    next: NextFunction
+  ): Promise<any> {
+    await this.deleteUser.execute(req, res, next);
   }
 }

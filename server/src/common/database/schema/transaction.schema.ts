@@ -1,7 +1,7 @@
 import { model, Schema } from "mongoose";
-import Payment from "../model/transaction.model";
+import Transaction from "../model/transaction.model";
 
-const transactionSchema: Schema = new Schema<Payment>({
+const transactionSchema: Schema = new Schema<Transaction>({
   booking: {
     type: Schema.Types.ObjectId,
     ref: "Bookings",
@@ -28,4 +28,4 @@ const transactionSchema: Schema = new Schema<Payment>({
   updated_at: Date,
 });
 
-export default model<Payment>("Transactions", transactionSchema);
+export default model<Transaction>("Transactions", transactionSchema);

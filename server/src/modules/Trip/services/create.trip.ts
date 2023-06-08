@@ -9,42 +9,20 @@ import Trip from "../../../common/database/model/trip.model";
 
 @injectable()
 export default class CreateTripService implements Service<Request, Response, NextFunction> {
-  constructor(private tripRepository: TripRepository, private http: Http) {}
+  constructor(private trip: TripRepository, private http: Http) {}
   async execute(
     req: Request<ParamsDictionary, any, Trip, ParsedQs, Record<string, any>>,
     res: Response<any, Record<string, any>>,
     next: NextFunction
   ): Promise<void> {
     try {
-      const {
-        departure_location,
-        departure_time,
-        arrival_location,
-        arrival_time,
-        trip_date,
-        seat_cost,
-        capacity,
-        vehicle,
-      } = req.body;
-
-      const newUserPayload: Trip = {
-        departure_location,
-        departure_time,
-        arrival_location,
-        arrival_time,
-        trip_date,
-        seat_cost,
-        capacity,
-        vehicle,
-      };
-
-      const data = await this.tripRepository.create(newUserPayload);
+      const data = await this.trip.createOne(req.body);
 
       this.http.Response({
         res,
         status: "success",
         statusCode: 201,
-        message: "Trip Successfully Created!",
+        message: "Trip Created!",
         data,
       });
     } catch (error) {

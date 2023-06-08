@@ -9,7 +9,7 @@ import Trip from "../../../common/database/model/trip.model";
 
 @injectable()
 export default class EditTripService implements Service<Request, Response, NextFunction> {
-  constructor(private tripRepository: TripRepository, private http: Http) {}
+  constructor(private trip: TripRepository, private http: Http) {}
   async execute(
     req: Request<ParamsDictionary, any, Trip, ParsedQs, Record<string, any>>,
     res: Response<any, Record<string, any>>,
@@ -17,34 +17,37 @@ export default class EditTripService implements Service<Request, Response, NextF
   ): Promise<void> {
     try {
       const { id } = req.params;
+
       const {
         departure_location,
         departure_time,
         arrival_location,
         arrival_time,
-        trip_date,
-        seat_cost,
         capacity,
+        seat_cost,
         vehicle,
+        trip_date,
       } = req.body;
-
-      const newUserPayload: Trip = {
+      
+      const newTripPayload: Trip = {
         departure_location,
         departure_time,
         arrival_location,
         arrival_time,
-        trip_date,
-        seat_cost,
         capacity,
+        seat_cost,
         vehicle,
+        trip_date,
+        updated_at: new Date(),
       };
-      const data = await this.tripRepository.update({ _id: id }, newUserPayload);
+
+      const data = await this.trip.updateOne({ _id: id }, newTripPayload);
 
       this.http.Response({
         res,
         status: "success",
         statusCode: 201,
-        message: "Trip Successfully Created!",
+        message: "Trip Updated!",
         data,
       });
     } catch (error) {

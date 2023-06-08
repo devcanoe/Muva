@@ -1,24 +1,52 @@
 import { injectable } from "tsyringe";
 import CRUD from "../../../common/interface/crud.interface";
-import databaseUtils from "../../../common/utils/database.utils";
 import bookingSchema from "../../../common/database/schema/booking.schema";
 import Booking from "../../../common/database/model/booking.model";
+import DatabaseQueryHelper from "../../../common/helpers/database.helper";
 
 @injectable()
 export default class BookingRepository implements CRUD {
-  async getOne(data: Booking, popOption_1?: string, popOption_2?: string): Promise<any> {
-    return await databaseUtils.readOne(bookingSchema, data, popOption_1, popOption_2);
+  constructor(private query: DatabaseQueryHelper) {}
+  async readOne(params: object): Promise<any> {
+    try {
+      return await this.query.readOne(bookingSchema, params);
+    } catch (error) {
+      return error;
+    }
   }
-  async getAll(query?: Record<string, any>): Promise<any> {
-    return await databaseUtils.readAll(bookingSchema, query);
+  async readAll(query: object): Promise<any> {
+    try {
+      return await this.query.readAll(bookingSchema, query);
+    } catch (error) {
+      return error;
+    }
   }
-  async create(data: Booking): Promise<any> {
-    return await databaseUtils.create(bookingSchema, data);
+  async createOne(payload: Booking): Promise<any> {
+    try {
+      return await this.query.createOne(bookingSchema, payload);
+    } catch (error) {
+      return error;
+    }
   }
-  async update(data: Booking, payload: Booking): Promise<any> {
-    return await databaseUtils.update(bookingSchema, data, payload);
+  async updateOne(params: Booking, payload: Booking): Promise<any> {
+    try {
+      return await this.query.updateOne(bookingSchema, params, payload);
+    } catch (error) {
+      return error;
+    }
   }
-  async delete(data: Booking): Promise<any> {
-    return await databaseUtils.delete(bookingSchema, data);
+  async deleteOne(params: string): Promise<any> {
+    try {
+      return await this.query.deleteOne(bookingSchema, params);
+    } catch (error) {
+      return error;
+    }
+  }
+  async countAll(query?: object | undefined): Promise<any> {
+    try {
+      return await this.query.countAll(bookingSchema, query);
+    } catch (error) {
+      return error;
+    }
   }
 }

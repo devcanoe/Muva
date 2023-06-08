@@ -6,10 +6,10 @@ import Http from "../../../common/utils/http.utils";
 
 @injectable()
 export default class GetUsersService implements Service<Request, Response, NextFunction> {
-  constructor(private userRepository: UserRepository, private http: Http) {}
+  constructor(private user: UserRepository, private http: Http) {}
   async execute(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const data = await this.userRepository.getAll(req.query);
+      const data = await this.user.readAll(req.query);
 
       this.http.Response({
         res,

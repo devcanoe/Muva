@@ -1,24 +1,52 @@
 import { injectable } from "tsyringe";
 import CRUD from "../../../common/interface/crud.interface";
-import databaseUtils from "../../../common/utils/database.utils";
 import tripSchema from "../../../common/database/schema/trip.schema";
 import Trip from "../../../common/database/model/trip.model";
+import DatabaseQueryHelper from "../../../common/helpers/database.helper";
 
 @injectable()
 export default class TripRepository implements CRUD {
-  async getOne(data: Trip): Promise<any> {
-    return await databaseUtils.readOne(tripSchema, data);
+  constructor(private query: DatabaseQueryHelper) {}
+  async readOne(params: Trip): Promise<any> {
+    try {
+      return await this.query.readOne(tripSchema, params);
+    } catch (error) {
+      return error;
+    }
   }
-  async getAll(query: Record<string, any>): Promise<any> {
-    return await databaseUtils.readAll(tripSchema, query);
+  async readAll(query: object): Promise<any> {
+    try {
+      return await this.query.readAll(tripSchema, query);
+    } catch (error) {
+      return error;
+    }
   }
-  async create(data: Trip): Promise<any> {
-    return await databaseUtils.create(tripSchema, data);
+  async createOne(payload: Trip): Promise<any> {
+    try {
+      return await this.query.createOne(tripSchema, payload);
+    } catch (error) {
+      return error;
+    }
   }
-  async update(data: Trip, payload: Trip): Promise<any> {
-    return databaseUtils.update(tripSchema, data, payload);
+  async updateOne(params: Trip, payload: Trip): Promise<any> {
+    try {
+      return await this.query.updateOne(tripSchema, params, payload);
+    } catch (error) {
+      return error;
+    }
   }
-  async delete(data: Trip): Promise<any> {
-    return await databaseUtils.delete(tripSchema, data);
+  async deleteOne(params: string): Promise<any> {
+    try {
+      return await this.query.deleteOne(tripSchema, params);
+    } catch (error) {
+      return error;
+    }
+  }
+  async countAll(query?: object | undefined): Promise<any> {
+    try {
+      return await this.query.countAll(tripSchema, query);
+    } catch (error) {
+      return error;
+    }
   }
 }
