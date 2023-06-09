@@ -15,8 +15,8 @@ export default class BookingController implements Controller<Request, Response, 
     private getBooking: GetBookingService,
     private getBookings: GetBookingsService,
     private checkBookings: ConfirmBookingService,
-    private guestReserve: GuestReserveSeatService,
-    private userReserve: UserReserveSeatService
+    private guestReserveSeatService: GuestReserveSeatService,
+    private userReserveSeatService: UserReserveSeatService
   ) {}
   async readOne(
     req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
@@ -47,19 +47,19 @@ export default class BookingController implements Controller<Request, Response, 
     res: Response<any, Record<string, any>>,
     next: NextFunction
   ): Promise<any> {}
-  async guest(
+  async guestReserve(
     req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
     res: Response<any, Record<string, any>>,
     next: NextFunction
   ): Promise<any> {
-    await this.guestReserve.execute(req, res, next);
+    await this.guestReserveSeatService.execute(req, res, next);
   }
-  async user(
+  async userReserve(
     req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
     res: Response<any, Record<string, any>>,
     next: NextFunction
   ): Promise<any> {
-    await this.userReserve.execute(req, res, next);
+    await this.userReserveSeatService.execute(req, res, next);
   }
   async confirm(
     req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,

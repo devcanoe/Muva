@@ -10,7 +10,7 @@ bookingRoute
   .get("/:id", (req: Request<{ id: string }>, res: Response, next: NextFunction) => booking.readOne(req, res, next))
 
   .post("/confirm-payment", (req: Request, res: Response, next: NextFunction) => booking.confirm(req, res, next))
-  .post("/guest-reserve", (req: Request, res: Response, next: NextFunction) => booking.guest(req, res, next))
-  .post("/user-reserve", (req: Request, res: Response, next: NextFunction) => booking.user(req, res, next));
+  .post("/guest-reserve", (req: Request, res: Response, next: NextFunction) => booking.guestReserve(req, res, next))
+  .post("/user-reserve", (req: Request, res: Response, next: NextFunction) => booking.userReserve(req, res, next));
 
 export default bookingRoute;
