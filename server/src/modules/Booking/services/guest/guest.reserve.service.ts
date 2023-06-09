@@ -27,7 +27,8 @@ export default class GuestReserveSeatService implements Service<Request, Respons
     next: NextFunction
   ): Promise<any> {
     try {
-      const { trip, first_name, last_name, email, phone, gender, total_cost } = req.body;
+      const { trip, first_name, last_name, email, phone, gender, total_cost, next_of_kin_name, next_of_kin_number } =
+        req.body;
 
       //CREATE USER
       const newUserPayload: User = {
@@ -47,6 +48,8 @@ export default class GuestReserveSeatService implements Service<Request, Respons
         total_cost,
         user: user._id,
         ref_no: bookingReference,
+        next_of_kin_name,
+        next_of_kin_number,
       };
       const booking: Booking = await this.booking.createOne(newBookingPayload);
 
