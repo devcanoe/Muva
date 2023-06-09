@@ -37,8 +37,11 @@ export default function TripContent() {
     const { data, isLoading } = useSearchTripQuery(payload);
 
     console.log(!isLoading && data)
-    const gotoCheckout = (id: string) => {
-        dispatch(setBooking(id));
+    const gotoCheckout = (id: string, cost: string) => {
+        dispatch(setBooking({
+            id,
+            cost
+        }));
         router.push("/checkout");
     }
 
@@ -51,8 +54,8 @@ export default function TripContent() {
 
     return (
         <>
-            {!isLoading && 
-                <section className={styles.container}>
+            {trips ?
+                (<section className={styles.container}>
                     {/* <p>Abia to Port-harcourt</p> */}
                     <h3>Select a trip</h3>
                     <div className={styles.trips}>
@@ -63,13 +66,17 @@ export default function TripContent() {
                                         <p><b>Departure Time:</b> {trip.departure_time} </p>
                                         <p><b>Cost:</b> {trip.seat_cost} </p>
                                         <p><b>Available Seat:</b> {trip.capacity}</p>
-                                        <Button label={"Book trip"} onClick={() => { gotoCheckout(trip._id) }} />
+                                        <Button label={"Book trip"} onClick={() => { gotoCheckout(trip._id, trip.seat_cost) }} />
                                     </div>
                                 )
                             })
                         }
                     </div>
                 </section>
+                ) :
+                (
+                    <p>No trip available for this date</p>
+                )
             }
         </>
     )

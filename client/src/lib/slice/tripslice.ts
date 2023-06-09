@@ -12,6 +12,11 @@ export interface ICheckout {
   next_of_kin_phone: any
 }
 
+export interface IBooking {
+  id: string,
+  cost: string,
+}
+
 const initialCheckout: ICheckout = {
   first_name: "",
   last_name: "",
@@ -22,13 +27,18 @@ const initialCheckout: ICheckout = {
   next_of_kin_phone: undefined
 }
 
+const initialBooking: IBooking = {
+  id: "",
+  cost: ""
+}
+
 const slice = createSlice({
   name: "trip",
   initialState: {
     departure_location: "",
     arrival_location: "",
     trip_date: "",
-    id: "",
+    booking: initialBooking,
     checkout: initialCheckout
   },
   reducers: {
@@ -37,8 +47,8 @@ const slice = createSlice({
       state.departure_location = action.payload.departure_location;
       state.trip_date = action.payload.trip_date
     },
-    setBooking: (state, action) => {
-      state.id = action.payload.id
+    setBooking: (state, action: PayloadAction<IBooking>) => {
+      state.booking = action.payload
     },
     setCheckout: (state, action: PayloadAction<ICheckout>) => {
       state.checkout = action.payload
@@ -49,5 +59,5 @@ const slice = createSlice({
 export const { setSearchKeyword, setCheckout, setBooking } = slice.actions;
 export default slice.reducer;
 export const selectCurrentFrom: any = (state: RootState) => state.trip;
-export const selectCurrentBooking = (state: RootState) => state.trip.id;
-export const selectCurrentCheckout = (state: RootState) => state.trip.checkout;
+export const selectCurrentBooking: any = (state: RootState) => state.trip.booking;
+export const selectCurrentCheckout: any = (state: RootState) => state.trip.checkout;
