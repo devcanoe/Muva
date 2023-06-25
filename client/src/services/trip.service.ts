@@ -6,6 +6,9 @@ export interface ISearch {
     departure_location: string;
     arrival_location: string;
     trip_date: string;
+    adult: number,
+    infant?: number,
+    child?: number,
 }
 
 export const tripEndpoint = sungloApi.injectEndpoints({
