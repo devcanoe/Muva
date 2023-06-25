@@ -13,7 +13,7 @@ interface IDropdown {
 export interface Iitem {
     id: string | number,
     title: string,
-    value: string
+    value: string | number
 }
 
 export default function Dropdown(props: IDropdown) {
