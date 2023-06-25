@@ -20,6 +20,16 @@ const bookingSchema: Schema = new Schema<Booking>({
     type: String,
     required: true,
   },
+  adult: {
+    type: Number,
+    required: true
+  },
+  infant: {
+    type: Number,
+  },
+  child: {
+    type: Number,
+  },
   next_of_kin_name: {
     type: String,
     required: true,
