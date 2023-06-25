@@ -19,7 +19,30 @@ const location: Iitem[] = [
         title: "Lagos",
         value: "LAG"
     }
-]
+];
+
+const amount: Iitem[] = [
+    {
+        id: "0",
+        title: "1",
+        value: 1
+    },
+    {
+        id: "1",
+        title: "2",
+        value: 2
+    },
+    {
+        id: "2",
+        title: "3",
+        value: 3
+    },
+    {
+        id: "3",
+        title: "4",
+        value: 4
+    }
+];
 
 export default function HomeContent() {
 
@@ -37,20 +60,29 @@ export default function HomeContent() {
         departure_date: yup
             .date()
             .required('Departure date is required'),
+        adult: yup.number().required('Adult is required'),
+        child: yup.number(),
+        infant: yup.number()
     });
 
     const formik = useFormik({
         initialValues: {
             from: '',
             to: '',
-            departure_date: new Date
+            departure_date: new Date,
+            adult: 0,
+            infant: 0,
+            child: 0
         },
         validationSchema: validationSchema,
         onSubmit: (values) => { 
             dispatch(setSearchKeyword({
                 departure_location: values.from,
                 arrival_location: values.to,
-                trip_date: `${values.departure_date}`
+                trip_date: `${values.departure_date}`,
+                adult: values.adult,
+                child: values.child ? values.child : 0,
+                infant: values.infant ? values.infant : 0
             }));
 
             void router.push("/trips");
@@ -85,6 +117,41 @@ export default function HomeContent() {
                             disabled={false}
                             name={'to'}
                             value={formik.values.to}
+                            onChange={formik.handleChange}
+                            // error={formik.touched.to && Boolean(formik.errors.to)}
+                            // helperText={formik.touched.to && formik.errors.to}
+                            required={true}
+                        />
+
+                        <Dropdown
+                            label={'Adult'}
+                            items={amount}
+                            disabled={false}
+                            name={'adult'}
+                            value={formik.values.adult}
+                            onChange={formik.handleChange}
+                            // error={formik.touched.to && Boolean(formik.errors.to)}
+                            // helperText={formik.touched.to && formik.errors.to}
+                            required={true}
+                        />
+
+                        <Dropdown
+                            label={'Child'}
+                            items={amount}
+                            disabled={false}
+                            name={'child'}
+                            value={formik.values.child}
+                            onChange={formik.handleChange}
+                            // error={formik.touched.to && Boolean(formik.errors.to)}
+                            // helperText={formik.touched.to && formik.errors.to}
+                        />
+
+                        <Dropdown
+                            label={'Infant'}
+                            items={amount}
+                            disabled={false}
+                            name={'infant'}
+                            value={formik.values.infant}
                             onChange={formik.handleChange}
                             // error={formik.touched.to && Boolean(formik.errors.to)}
                             // helperText={formik.touched.to && formik.errors.to}
