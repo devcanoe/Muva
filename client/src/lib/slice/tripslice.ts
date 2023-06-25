@@ -38,6 +38,9 @@ const slice = createSlice({
     departure_location: "",
     arrival_location: "",
     trip_date: "",
+    adult: 0,
+    child: 0,
+    infant: 0,
     booking: initialBooking,
     checkout: initialCheckout
   },
@@ -45,7 +48,10 @@ const slice = createSlice({
     setSearchKeyword: (state, action: PayloadAction<ISearch>) => {
       state.arrival_location = action.payload.arrival_location;
       state.departure_location = action.payload.departure_location;
-      state.trip_date = action.payload.trip_date
+      state.trip_date = action.payload.trip_date;
+      state.adult = action.payload.adult;
+      state.child = action.payload.child ? action.payload.child : 0;
+      state.infant = action.payload.infant ? action.payload.infant : 0;
     },
     setBooking: (state, action: PayloadAction<IBooking>) => {
       state.booking = action.payload
