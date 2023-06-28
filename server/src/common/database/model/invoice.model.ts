@@ -8,6 +8,7 @@ export interface InvoiceDetail {
 }
 
 export default interface Invoice extends Base {
+    ref_no: string;
     booking: Schema.Types.ObjectId;
     details: InvoiceDetail[];
     total: number;
