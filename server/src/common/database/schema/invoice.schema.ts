@@ -2,10 +2,14 @@ import { Schema, model } from "mongoose";
 import Invoice from "../model/invoice.model";
 
 const invoiceSchema: Schema = new Schema<Invoice>({
+    ref_no: {
+        type: String,
+        required: [true, "Invoice reference number is required"]
+    },
     booking: {
         type: Schema.Types.ObjectId,
         ref: 'booking',
-        required: [ true, "booking is required"]
+        required: [ true, "Booking is required"]
     },
     total: {
         type: Number,
